@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Data // 교육용이니까 getter setter 사용 하신듯?
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +27,6 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    // 더블인게 좀 특이하다.
     private Double totalAmount;
 }

@@ -30,6 +30,7 @@ public class MyBatisOrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
+        // stream -> dto 반환
         return orderMapper.findAll().stream()
                 .map(dto -> mapToOrder(dto))
                 .collect(Collectors.toList());

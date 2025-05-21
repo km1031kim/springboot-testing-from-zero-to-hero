@@ -15,6 +15,8 @@ import java.util.regex.Pattern;
 public class JpaUserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    // 직접하네
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9+_.-]+@(.+)$"
     );
@@ -33,6 +35,7 @@ public class JpaUserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
     }
 
+    // 트랜잭셔널..?
     @Override
     public User createUser(User user) {
         if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {

@@ -111,6 +111,7 @@ class JpaOrderServiceImplTest {
 
             assertThat(order.getQuantity()).isEqualTo(quantity);
         }
+
         /**
          * 주문 ID로 주문 조회 테스트 - 존재하는 ID
          */
@@ -210,13 +211,13 @@ class JpaOrderServiceImplTest {
 
             // Then: 조회된 주문들의 orderDate가 설정한 범위 내에 있는지 검증
             assertThat(ordersInRange).allMatch(order ->
-                    !order.getOrderDate().isBefore(startDate) && !order.getOrderDate().isAfter(endDate)
+                !order.getOrderDate().isBefore(startDate) && !order.getOrderDate().isAfter(endDate)
             );
 
             // 추가 검증: 특정 주문이 포함되어 있는지 확인
             assertThat(ordersInRange)
-                    .extracting(Order::getId)
-                    .contains(savedOrder1.getId(), savedOrder2.getId());
+                .extracting(Order::getId)
+                .contains(savedOrder1.getId(), savedOrder2.getId());
         }
     }
 
@@ -257,10 +258,11 @@ class JpaOrderServiceImplTest {
             assertThat(updatedProduct).isNotNull();
             assertThat(updatedProduct.getStock()).isEqualTo(45); // 50 - 5 = 45
         }
+
         @ParameterizedTest
         @CsvSource({
-                "test_user, test.user@example.com",
-                "john_doe, john.doe@example.com"
+            "test_user, test.user@example.com",
+            "john_doe, john.doe@example.com"
         })
         @DisplayName("다양한 사용자 이름 및 이메일로 주문 생성 테스트")
         void testCreateOrderWithDifferentUsers(String username, String email) {
@@ -275,6 +277,7 @@ class JpaOrderServiceImplTest {
             assertThat(order.getUser().getUsername()).isEqualTo(username);
             assertThat(order.getUser().getEmail()).isEqualTo(email);
         }
+
         /**
          * 주문 생성 테스트 - 실패 케이스 (재고 부족)
          */
@@ -351,6 +354,7 @@ class JpaOrderServiceImplTest {
             assertThat(updatedProduct).isNotNull();
             assertThat(updatedProduct.getStock()).isEqualTo(48); // 50 - 2 = 48
         }
+
         /**
          * 반복된 주문 생성 테스트 - 여러 번 주문 생성하여 성능 확인
          */
@@ -606,4 +610,12 @@ class JpaOrderServiceImplTest {
             assertThat(updatedProduct.getStock()).isEqualTo(48); // 50 - 2 = 48
         }
     }
+
+    /**
+     * 취소 관련 테스트 그룹
+     *
+     */
+
+
+
 }

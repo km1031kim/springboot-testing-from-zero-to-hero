@@ -2,6 +2,8 @@ package io.github.junhkang.springboottesting.controller;
 
 import io.github.junhkang.springboottesting.domain.User;
 import io.github.junhkang.springboottesting.service.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }

@@ -20,9 +20,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(OrderController.class)
 @DisplayName("OrderController 테스트")
@@ -168,7 +166,8 @@ class OrderControllerTest {
 
         // When & Then: GET 요청을 수행하고 응답을 검증
         mockMvc.perform(get("/orders/1/totalAmount"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", is(500.0)));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", is(500.0)))
+            .andExpect(content().string("500.0"));
     }
 }
